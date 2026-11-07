@@ -240,36 +240,6 @@
         MI CASA AL SERVICIO DE DIOS<br>
         "YO Y MI CASA SERVIREMOS A JEHOVÁ" (JOSUÉ 24:15)
       </div>
-
-      ¡Excelente trabajo! Ya veo tu web en vivo en **GitHub Pages** y el diseño está cargando con fluidez. 
-
-En la captura se ven claramente los tres detalles que mencionas. Vamos a corregirlos paso a paso con el código exacto:
-
----
-
-### 1. ¿Por qué se ve ese cuadro verde con código roto? (Y cómo corregirlo)
-
-**El error:** Al editar el enlace, se borró una comilla o el cierre de la etiqueta `<a ...>`, por lo que el navegador confundió parte del enlace y lo mostró como texto en pantalla: `Betel" class="btn-casa"...`. Además, tomó el estilo del botón de contacto inferior (verde).
-
-**La solución:** Busca en tu `index.html` dentro de `<div id="casa-1" class="pantalla">` y reemplaza ese botón roto por este bloque limpio:
-
-```html
-<!-- Botón corregido para Casa 1 -->
-<a href="https://chat.whatsapp.com/TU_CODIGO_AQUI" target="_blank" class="btn-casa" style="margin-bottom:12px;">
-  💬 Escribir al WhatsApp de esta Casa
-</a>
-```
-*(Asegúrate de no tener otra etiqueta `<a>` envolviéndolo).*
-
----
-
-### 2. Ocultar las Casas 4 a 10 (para activarlas en el futuro)
-
-Para que en la pantalla principal **solo se vean las 3 primeras casas**, usamos comentarios de código `<!--` y `-->`. Así las casas no se borran, solo quedan "invisibles" hasta que las necesites.
-
-Busca en tu menú principal la lista de casas y déjala exactamente así:
-
-```html
       <div class="lista-casas">
         
         <!-- CASA 1 -->
