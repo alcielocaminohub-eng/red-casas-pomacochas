@@ -241,6 +241,35 @@
         "YO Y MI CASA SERVIREMOS A JEHOVÁ" (JOSUÉ 24:15)
       </div>
 
+      ¡Excelente trabajo! Ya veo tu web en vivo en **GitHub Pages** y el diseño está cargando con fluidez. 
+
+En la captura se ven claramente los tres detalles que mencionas. Vamos a corregirlos paso a paso con el código exacto:
+
+---
+
+### 1. ¿Por qué se ve ese cuadro verde con código roto? (Y cómo corregirlo)
+
+**El error:** Al editar el enlace, se borró una comilla o el cierre de la etiqueta `<a ...>`, por lo que el navegador confundió parte del enlace y lo mostró como texto en pantalla: `Betel" class="btn-casa"...`. Además, tomó el estilo del botón de contacto inferior (verde).
+
+**La solución:** Busca en tu `index.html` dentro de `<div id="casa-1" class="pantalla">` y reemplaza ese botón roto por este bloque limpio:
+
+```html
+<!-- Botón corregido para Casa 1 -->
+<a href="https://chat.whatsapp.com/TU_CODIGO_AQUI" target="_blank" class="btn-casa" style="margin-bottom:12px;">
+  💬 Escribir al WhatsApp de esta Casa
+</a>
+```
+*(Asegúrate de no tener otra etiqueta `<a>` envolviéndolo).*
+
+---
+
+### 2. Ocultar las Casas 4 a 10 (para activarlas en el futuro)
+
+Para que en la pantalla principal **solo se vean las 3 primeras casas**, usamos comentarios de código `<!--` y `-->`. Así las casas no se borran, solo quedan "invisibles" hasta que las necesites.
+
+Busca en tu menú principal la lista de casas y déjala exactamente así:
+
+```html
       <div class="lista-casas">
         
         <!-- CASA 1 -->
@@ -264,7 +293,11 @@
           <button class="btn-casa" onclick="irA('casa-3')">👉 ven a mi casa hoy</button>
         </div>
 
-        <!-- CASAS 4 A 10 (PREPARADAS PARA EDITAR) -->
+        <!-- ========================================================
+             CASAS 4 A 10 OCULTAS TEMPORALMENTE
+             (Para activar una casa, solo muévela fuera de este bloque)
+        ======================================================== -->
+        <!--
         <div class="card-casa color-1">
           <h3>🏠 CASA 4: EBENEZER</h3>
           <p>MARTES | 7:30 PM A 8:30 PM</p>
@@ -306,7 +339,74 @@
           <p>VIERNES | 8:00 PM A 9:00 PM</p>
           <button class="btn-casa" onclick="irA('casa-10')">👉 ven a mi casa hoy</button>
         </div>
+        -->
 
+      </div>
+```
+
+---
+
+### 3. Estructura idéntica y completa para Casa 2 (Siloé) y Casa 3 (Beraca)
+
+Para que las casas 2 y 3 tengan exactamente el mismo formato que Betel (título de bienvenida, texto lema debajo, fotos y el botón de WhatsApp), busca la sección de esas casas y reemplázalas por estas:
+
+```html
+    <!-- ================= DETALLE CASA 2: SILOÉ ================= -->
+    <div id="casa-2" class="pantalla">
+      <div class="detalle-casa">
+        <h2>Bienvenido a mi hogar<br>[Nombres de los Líderes]</h2>
+        <p class="texto-lema">
+          Un espacio de comunión, fe y bendición donde la presencia de Dios llena cada rincón de nuestra familia.
+        </p>
+        
+        <div class="galeria-fotos">
+          <!-- Puedes cambiar estos enlaces por las fotos de la casa Siloé -->
+          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Familia Siloé">
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Oración Siloé">
+        </div>
+
+        <!-- Botón de WhatsApp -->
+        <a href="https://chat.whatsapp.com/TU_CODIGO_AQUI" target="_blank" class="btn-casa" style="margin-bottom:12px;">
+          💬 Escribir al WhatsApp de esta Casa
+        </a>
+
+        <button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button>
+      </div>
+    </div>
+
+
+    <!-- ================= DETALLE CASA 3: BERACA ================= -->
+    <div id="casa-3" class="pantalla">
+      <div class="detalle-casa">
+        <h2>Bienvenido a mi hogar<br>[Nombres de los Líderes]</h2>
+        <p class="texto-lema">
+          Lugar de valle de bendición, alabanza y búsqueda sincera de la presencia de Dios para toda la comunidad.
+        </p>
+        
+        <div class="galeria-fotos">
+          <!-- Puedes cambiar estos enlaces por las fotos de la casa Beraca -->
+          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Familia Beraca">
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Oración Beraca">
+        </div>
+
+        <!-- Botón de WhatsApp -->
+        <a href="https://chat.whatsapp.com/TU_CODIGO_AQUI" target="_blank" class="btn-casa" style="margin-bottom:12px;">
+          💬 Escribir al WhatsApp de esta Casa
+        </a>
+
+        <button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button>
+      </div>
+    </div>
+```
+
+---
+
+### ¿Cómo personalizar las fotos de cada casa en el futuro?
+
+Solo reemplazas el texto dentro de `src="..."`:
+* `<img src="https://enlace-de-tu-foto.jpg">`
+
+Una vez pegues estos cambios en tu archivo `index.html` en GitHub y hagas clic en **Commit changes**, espera 1 minuto, recarga tu celular y verás las 3 casas con su diseño completo, el botón amarillo corregido y las demás casas listas para cuando decidas activarlas.
       </div>
 
       <!-- Retorno directo a WhatsApp Central -->
@@ -332,9 +432,10 @@
         </div>
 
         <!-- Botón para escribir directamente a esta casa por WhatsApp -->
-        <a href="https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2target="_blank" class="btn-contacto-whatsapp"> Betel" class="btn-casa" style="margin-bottom:12px;">
-          💬 Escribir al WhatsApp de esta Casa
-        </a>
+        <!-- Botón corregido para Casa 1 -->
+<a href="https://chat.whatsapp.com/TU_CODIGO_AQUI" target="_blank" class="btn-casa" style="margin-bottom:12px;">
+  💬 Escribir al WhatsApp de esta Casa
+</a>
 
         <button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button>
       </div>
@@ -346,6 +447,17 @@
       <div class="detalle-casa">
         <h2>Bienvenido a mi hogar<br>Casa Siloé</h2>
         <p class="texto-lema">Un espacio de comunión, fe y bendición para ti y tu familia.</p>
+        <div class="galeria-fotos">
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Oración">
+          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Familia">
+        </div>
+
+        <!-- Botón para escribir directamente a esta casa por WhatsApp -->
+        <!-- Botón corregido para Casa 2 -->
+<a href="https://chat.whatsapp.com/TU_CODIGO_AQUI" target="_blank" class="btn-casa" style="margin-bottom:12px;">
+  💬 Escribir al WhatsApp de esta Casa
+</a>
+        
         <button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button>
       </div>
     </div>
@@ -356,6 +468,16 @@
       <div class="detalle-casa">
         <h2>Bienvenido a mi hogar<br>Casa Beraca</h2>
         <p class="texto-lema">Lugar de bendición y adoración a nuestro Dios.</p>
+        <div class="galeria-fotos">
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Oración">
+          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Familia">
+        </div>
+
+        <!-- Botón para escribir directamente a esta casa por WhatsApp -->
+        <!-- Botón corregido para Casa 3 -->
+<a href="https://chat.whatsapp.com/TU_CODIGO_AQUI" target="_blank" class="btn-casa" style="margin-bottom:12px;">
+  💬 Escribir al WhatsApp de esta Casa
+</a>
         <button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button>
       </div>
     </div>
