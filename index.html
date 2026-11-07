@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Red de Casas - IACyM Pomacochas</title>
-  <!-- Vista previa al compartir en WhatsApp y redes -->
-<meta property="og:title" content="Red de Casas - IACyM Pomacochas">
-<meta property="og:description" content="Encuentra tu casa de oración más cercana. Ven a mi casa hoy.">
-<meta property="og:type" content="website">
-<!-- Puedes poner aquí el enlace de una foto representativa -->
-<meta property="og:image" content="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500">
+  
+  <!-- Vista previa al compartir en WhatsApp -->
+  <meta property="og:title" content="Red de Casas - IACyM Pomacochas">
+  <meta property="og:description" content="Encuentra tu casa de oración más cercana. Ven a mi casa hoy.">
+  <meta property="og:type" content="website">
+
   <style>
-    /* Estilos globales y reseteo para comportamiento de App */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -27,7 +26,6 @@
       min-height: 100vh;
     }
 
-    /* Contenedor móvil centralizado */
     .app-container {
       width: 100%;
       max-width: 440px;
@@ -39,7 +37,7 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
 
-    /* Sistema de navegación SPA: solo la pantalla activa se muestra */
+    /* Sistema de pantallas SPA */
     .pantalla {
       display: none;
       flex-direction: column;
@@ -57,7 +55,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Cabecera idéntica a tu Canva */
+    /* Regla para ocultar casas que aún no se usan */
+    .oculto {
+      display: none !important;
+    }
+
+    /* Cabecera del menú principal */
     .header-iglesia {
       background-color: #bbf2e8;
       border: 2px solid #333;
@@ -83,7 +86,6 @@
       line-height: 1.3;
     }
 
-    /* Lista y tarjetas de casas */
     .lista-casas {
       display: flex;
       flex-direction: column;
@@ -92,7 +94,6 @@
     }
 
     .card-casa {
-      background-color: #2d2e5b; /* Color base oscuro */
       color: white;
       border-radius: 12px;
       padding: 12px;
@@ -100,10 +101,9 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
-    /* Colores alternados según el diseño de Canva */
-    .color-1 { background-color: #2b2d5c; } /* Casa Betel */
-    .color-2 { background-color: #1e4b52; } /* Casa Siloé */
-    .color-3 { background-color: #41224d; } /* Casa Beraca */
+    .color-1 { background-color: #2b2d5c; }
+    .color-2 { background-color: #1e4b52; }
+    .color-3 { background-color: #41224d; }
 
     .card-casa h3 {
       font-size: 1rem;
@@ -117,7 +117,6 @@
       margin-bottom: 10px;
     }
 
-    /* Botón amarillo interactivo */
     .btn-casa {
       background-color: #eed33c;
       color: #222;
@@ -129,8 +128,8 @@
       cursor: pointer;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
-      transition: transform 0.1s ease;
       text-decoration: none;
     }
 
@@ -138,7 +137,6 @@
       transform: scale(0.96);
     }
 
-    /* Botón de volver al menú */
     .btn-volver {
       background-color: #eed33c;
       color: #111;
@@ -153,7 +151,6 @@
       box-shadow: 0 3px 10px rgba(0,0,0,0.2);
     }
 
-    /* Botón de contacto inferior */
     .btn-contacto-whatsapp {
       background-color: #ffffff;
       color: #25d366;
@@ -168,19 +165,22 @@
       display: block;
     }
 
-    /* Pantalla de detalle de cada casa */
+    /* Detalle de cada casa */
     .detalle-casa {
       background: linear-gradient(180deg, #9ac1df 0%, #ffffff 100%);
       border-radius: 12px;
       padding: 20px 16px;
       text-align: center;
       flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .detalle-casa h2 {
       font-size: 1.25rem;
       color: #123456;
       margin-bottom: 10px;
+      line-height: 1.3;
     }
 
     .detalle-casa .texto-lema {
@@ -205,7 +205,6 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
-    /* Botón flotante de WhatsApp */
     .btn-whatsapp-flotante {
       position: fixed;
       bottom: 20px;
@@ -240,94 +239,119 @@
         MI CASA AL SERVICIO DE DIOS<br>
         "YO Y MI CASA SERVIREMOS A JEHOVÁ" (JOSUÉ 24:15)
       </div>
+
       <div class="lista-casas">
         
-        <!-- CASA 1 -->
+        <!-- CASA 1: VISIBLE -->
         <div class="card-casa color-1">
           <h3>🔥 CASA BETEL</h3>
           <p>LUNES | 8:00 PM A 9:00 PM</p>
           <button class="btn-casa" onclick="irA('casa-1')">👉 ven a mi casa hoy</button>
         </div>
 
-        <!-- CASA 2 -->
+        <!-- CASA 2: VISIBLE -->
         <div class="card-casa color-2">
           <h3>💧 CASA SILOÉ</h3>
           <p>MIÉRCOLES | 8:00 PM A 9:00 PM</p>
           <button class="btn-casa" onclick="irA('casa-2')">👉 ven a mi casa hoy</button>
         </div>
 
-        <!-- CASA 3 -->
+        <!-- CASA 3: VISIBLE -->
         <div class="card-casa color-3">
           <h3>✨ CASA BERACA</h3>
           <p>VIERNES | 8:00 PM A 9:00 PM</p>
           <button class="btn-casa" onclick="irA('casa-3')">👉 ven a mi casa hoy</button>
         </div>
 
-        <!-- ========================================================
-             CASAS 4 A 10 OCULTAS TEMPORALMENTE
-             (Para activar una casa, solo muévela fuera de este bloque)
-        ======================================================== -->
-        <!--
-        <div class="card-casa color-1">
+        <!-- CASAS 4 A 10 (OCULTAS LISTAS PARA ACTIVAR QUITANDO LA PALABRA 'oculto') -->
+        <div class="card-casa color-1 oculto">
           <h3>🏠 CASA 4: EBENEZER</h3>
           <p>MARTES | 7:30 PM A 8:30 PM</p>
           <button class="btn-casa" onclick="irA('casa-4')">👉 ven a mi casa hoy</button>
         </div>
 
-        <div class="card-casa color-2">
+        <div class="card-casa color-2 oculto">
           <h3>🏠 CASA 5: SION</h3>
           <p>JUEVES | 8:00 PM A 9:00 PM</p>
           <button class="btn-casa" onclick="irA('casa-5')">👉 ven a mi casa hoy</button>
         </div>
 
-        <div class="card-casa color-3">
+        <div class="card-casa color-3 oculto">
           <h3>🏠 CASA 6: PENIEL</h3>
           <p>SÁBADO | 6:00 PM A 7:00 PM</p>
           <button class="btn-casa" onclick="irA('casa-6')">👉 ven a mi casa hoy</button>
         </div>
 
-        <div class="card-casa color-1">
+        <div class="card-casa color-1 oculto">
           <h3>🏠 CASA 7: SHALOM</h3>
           <p>LUNES | 7:00 PM A 8:00 PM</p>
           <button class="btn-casa" onclick="irA('casa-7')">👉 ven a mi casa hoy</button>
         </div>
 
-        <div class="card-casa color-2">
+        <div class="card-casa color-2 oculto">
           <h3>🏠 CASA 8: EMANUEL</h3>
           <p>MIÉRCOLES | 7:30 PM A 8:30 PM</p>
           <button class="btn-casa" onclick="irA('casa-8')">👉 ven a mi casa hoy</button>
         </div>
 
-        <div class="card-casa color-3">
+        <div class="card-casa color-3 oculto">
           <h3>🏠 CASA 9: REHOBOT</h3>
           <p>JUEVES | 8:00 PM A 9:00 PM</p>
           <button class="btn-casa" onclick="irA('casa-9')">👉 ven a mi casa hoy</button>
         </div>
 
-        <div class="card-casa color-1">
+        <div class="card-casa color-1 oculto">
           <h3>🏠 CASA 10: GETSEMANÍ</h3>
           <p>VIERNES | 8:00 PM A 9:00 PM</p>
           <button class="btn-casa" onclick="irA('casa-10')">👉 ven a mi casa hoy</button>
         </div>
-        -->
+
       </div>
+
+      <!-- Enlace al Grupo de WhatsApp General -->
+      <a href="https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2 target="_blank" class="btn-contacto-whatsapp">
+        ¿DUDAS? CONTÁCTANOS DIRECTAMENTE AQUÍ
+      </a>
+
+    </div>
+
+
+    <!-- ================= DETALLE CASA 1: BETEL ================= -->
+    <div id="casa-1" class="pantalla">
+      <div class="detalle-casa">
+        <h2>Bienvenido a mi hogar<br>Eric y Roxana</h2>
+        <p class="texto-lema">
+          Ayúdanos a ser un lugar apartado donde la presencia de Dios transforma nuestra vida familiar y se abre el cielo sobre nuestra comunidad.
+        </p>
+        
+        <div class="galeria-fotos">
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Oración Betel">
+          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Familia Betel">
+        </div>
+
+        <a href="https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2 target="_blank" class="btn-casa" style="margin-bottom:12px;">
+          💬 Escribir al WhatsApp de esta Casa
+        </a>
+
+        <button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button>
+      </div>
+    </div>
+
 
     <!-- ================= DETALLE CASA 2: SILOÉ ================= -->
     <div id="casa-2" class="pantalla">
       <div class="detalle-casa">
-        <h2>Bienvenido a mi hogar<br>[Nombres de los Líderes]</h2>
+        <h2>Bienvenido a mi hogar<br>Líderes de Siloé</h2>
         <p class="texto-lema">
-          Un espacio de comunión, fe y bendición donde la presencia de Dios llena cada rincón de nuestra familia. 
+          Un espacio de comunión, fe y bendición donde la presencia de Dios llena cada rincón de nuestra familia.
         </p>
         
         <div class="galeria-fotos">
-          <!-- Puedes cambiar estos enlaces por las fotos de la casa Siloé -->
           <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Familia Siloé">
           <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Oración Siloé">
         </div>
 
-        <!-- Botón de WhatsApp -->
-        <a href="https://chat.whatsapp.com/TU_CODIGO_AQUI" target="_blank" class="btn-casa" style="margin-bottom:12px;">
+        <a href="https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2 target="_blank" class="btn-casa" style="margin-bottom:12px;">
           💬 Escribir al WhatsApp de esta Casa
         </a>
 
@@ -339,19 +363,17 @@
     <!-- ================= DETALLE CASA 3: BERACA ================= -->
     <div id="casa-3" class="pantalla">
       <div class="detalle-casa">
-        <h2>Bienvenido a mi hogar<br>[Nombres de los Líderes]</h2>
+        <h2>Bienvenido a mi hogar<br>Líderes de Beraca</h2>
         <p class="texto-lema">
-          Un hogar de encuentro donde queremos celebrar las victorias  de Dios sobre nuestra ceguera espiritual y nos unimos para alabarle y recibir su bendición desbordante
+          Un hogar de encuentro para celebrar las victorias de Jesus sobre la ceguera espiritual y nos unimos en alabanza para recibir sus bendiciones desbordantes en mi casa y de la familia de Dios
         </p>
         
         <div class="galeria-fotos">
-          <!-- Puedes cambiar estos enlaces por las fotos de la casa Beraca -->
-          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Familia Beraca">
-          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Oración Beraca">
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Familia Beraca">
+          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Oración Beraca">
         </div>
 
-        <!-- Botón de WhatsApp -->
-        <a href="https://chat.whatsapp.com/TU_CODIGO_AQUI" target="_blank" class="btn-casa" style="margin-bottom:12px;">
+        <a href="https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2 target="_blank" class="btn-casa" style="margin-bottom:12px;">
           💬 Escribir al WhatsApp de esta Casa
         </a>
 
@@ -359,113 +381,35 @@
       </div>
     </div>
 
-      </div>
 
-      <!-- Retorno directo a WhatsApp Central -->
-      <a href=""https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2target="_blank" class="btn-contacto-whatsapp">
-    💬
-        ¿DUDAS? CONTÁCTANOS DIRECTAMENTE AQUÍ
-      </a>
-
-    </div>
-
-  
-    <!-- ================= DETALLE CASA 1 ================= -->
-    <div id="casa-1" class="pantalla">
-      <div class="detalle-casa">
-        <h2>Bienvenido a mi hogar<br>Eric y Roxana</h2>
-        <p class="texto-lema">
-          Ayúdanos a ser un lugar apartado donde la presencia de Dios transforma nuestra vida familiar y se abre el cielo sobre nuestra comunidad.
-        </p>
-        
-        <div class="galeria-fotos">
-          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Oración">
-          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Familia">
-        </div>
-
-        <!-- Botón para escribir directamente a esta casa por WhatsApp -->
-        <!-- Botón corregido para Casa 1 -->
-<a href="https://chat.whatsapp.com/TU_CODIGO_AQUI" target="_blank" class="btn-casa" style="margin-bottom:12px;">
-  💬 Escribir al WhatsApp de esta Casa
-</a>
-
-        <button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button>
-      </div>
-    </div>
-
-
-    <!-- ================= DETALLE CASA 2 ================= -->
-    <div id="casa-2" class="pantalla">
-      <div class="detalle-casa">
-        <h2>Bienvenido a mi hogar<br>Casa Siloé</h2>
-        <p class="texto-lema">Un espacio de comunión, fe y bendición para ti y tu familia.</p>
-        <div class="galeria-fotos">
-          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Oración">
-          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Familia">
-        </div>
-
-        <!-- Botón para escribir directamente a esta casa por WhatsApp -->
-        <!-- Botón corregido para Casa 2 -->
-<a href="https://chat.whatsapp.com/TU_CODIGO_AQUI" target="_blank" class="btn-casa" style="margin-bottom:12px;">
-  💬 Escribir al WhatsApp de esta Casa
-</a>
-        
-        <button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button>
-      </div>
-    </div>
-
-
-    <!-- ================= DETALLE CASA 3 ================= -->
-    <div id="casa-3" class="pantalla">
-      <div class="detalle-casa">
-        <h2>Bienvenido a mi hogar<br>Casa Beraca</h2>
-        <p class="texto-lema">Lugar de bendición y adoración a nuestro Dios.</p>
-        <div class="galeria-fotos">
-          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Oración">
-          <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Familia">
-        </div>
-
-        <!-- Botón para escribir directamente a esta casa por WhatsApp -->
-        <!-- Botón corregido para Casa 3 -->
-<a href="https://chat.whatsapp.com/TU_CODIGO_AQUI" target="_blank" class="btn-casa" style="margin-bottom:12px;">
-  💬 Escribir al WhatsApp de esta Casa
-</a>
-        <button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button>
-      </div>
-    </div>
-
-
-    <!-- ================= DETALLES CASAS 4 A 10 ================= -->
-    <div id="casa-4" class="pantalla"><div class="detalle-casa"><h2>Casa 4: Ebenezer</h2><p class="texto-lema">Hasta aquí nos ayudó Jehová.</p><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
-    <div id="casa-5" class="pantalla"><div class="detalle-casa"><h2>Casa 5: Sion</h2><p class="texto-lema">Lugar de paz y alabanza.</p><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
-    <div id="casa-6" class="pantalla"><div class="detalle-casa"><h2>Casa 6: Peniel</h2><p class="texto-lema">Donde vimos a Dios cara a cara.</p><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
-    <div id="casa-7" class="pantalla"><div class="detalle-casa"><h2>Casa 7: Shalom</h2><p class="texto-lema">Paz en tu hogar y corazón.</p><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
-    <div id="casa-8" class="pantalla"><div class="detalle-casa"><h2>Casa 8: Emanuel</h2><p class="texto-lema">Dios con nosotros siempre.</p><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
-    <div id="casa-9" class="pantalla"><div class="detalle-casa"><h2>Casa 9: Rehobot</h2><p class="texto-lema">Porque ahora Jehová nos ha hecho prosperar.</p><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
-    <div id="casa-10" class="pantalla"><div class="detalle-casa"><h2>Casa 10: Getsemaní</h2><p class="texto-lema">Lugar de búsqueda e intimidad.</p><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
+    <!-- ================= PANTALLAS PREPARADAS PARA CASAS 4 A 10 ================= -->
+    <div id="casa-4" class="pantalla"><div class="detalle-casa"><h2>Bienvenido a mi hogar<br>Casa 4: Ebenezer</h2><p class="texto-lema">Hasta aquí nos ayudó Jehová.</p><a href="https://chat.whatsapp.com/TU_CODIGO_DE_GRUPO" target="_blank" class="btn-casa" style="margin-bottom:12px;">💬 Escribir al WhatsApp de esta Casa</a><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
+    <div id="casa-5" class="pantalla"><div class="detalle-casa"><h2>Bienvenido a mi hogar<br>Casa 5: Sion</h2><p class="texto-lema">Lugar de paz y alabanza.</p><a href="https://chat.whatsapp.com/TU_CODIGO_DE_GRUPO" target="_blank" class="btn-casa" style="margin-bottom:12px;">💬 Escribir al WhatsApp de esta Casa</a><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
+    <div id="casa-6" class="pantalla"><div class="detalle-casa"><h2>Bienvenido a mi hogar<br>Casa 6: Peniel</h2><p class="texto-lema">Donde vimos a Dios cara a cara.</p><a href="https://chat.whatsapp.com/TU_CODIGO_DE_GRUPO" target="_blank" class="btn-casa" style="margin-bottom:12px;">💬 Escribir al WhatsApp de esta Casa</a><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
+    <div id="casa-7" class="pantalla"><div class="detalle-casa"><h2>Bienvenido a mi hogar<br>Casa 7: Shalom</h2><p class="texto-lema">Paz en tu hogar y corazón.</p><a href="https://chat.whatsapp.com/TU_CODIGO_DE_GRUPO" target="_blank" class="btn-casa" style="margin-bottom:12px;">💬 Escribir al WhatsApp de esta Casa</a><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
+    <div id="casa-8" class="pantalla"><div class="detalle-casa"><h2>Bienvenido a mi hogar<br>Casa 8: Emanuel</h2><p class="texto-lema">Dios con nosotros siempre.</p><a href="https://chat.whatsapp.com/TU_CODIGO_DE_GRUPO" target="_blank" class="btn-casa" style="margin-bottom:12px;">💬 Escribir al WhatsApp de esta Casa</a><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
+    <div id="casa-9" class="pantalla"><div class="detalle-casa"><h2>Bienvenido a mi hogar<br>Casa 9: Rehobot</h2><p class="texto-lema">Porque ahora Jehová nos ha hecho prosperar.</p><a href="https://chat.whatsapp.com/TU_CODIGO_DE_GRUPO" target="_blank" class="btn-casa" style="margin-bottom:12px;">💬 Escribir al WhatsApp de esta Casa</a><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
+    <div id="casa-10" class="pantalla"><div class="detalle-casa"><h2>Bienvenido a mi hogar<br>Casa 10: Getsemaní</h2><p class="texto-lema">Lugar de búsqueda e intimidad.</p><a href="https://chat.whatsapp.com/TU_CODIGO_DE_GRUPO" target="_blank" class="btn-casa" style="margin-bottom:12px;">💬 Escribir al WhatsApp de esta Casa</a><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
 
   </div>
 
-  <!-- Botón flotante permanente de WhatsApp -->
-  <a href="https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2target="_blank" class="btn-contacto-whatsapp">
+  <!-- Botón flotante de WhatsApp (esquina inferior derecha) -->
+  <a href="https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2 target="_blank" class="btn-whatsapp-flotante" title="Grupo de WhatsApp">
     💬
   </a>
 
-  <!-- Script ligero de navegación instantánea -->
+  <!-- Script de navegación instantánea -->
   <script>
     function irA(pantallaId) {
-      // 1. Oculta todas las pantallas
       document.querySelectorAll('.pantalla').forEach(p => {
         p.classList.remove('activa');
       });
 
-      // 2. Muestra únicamente la pantalla solicitada
       const destino = document.getElementById(pantallaId);
       if (destino) {
         destino.classList.add('activa');
       }
 
-      // 3. Regresa el scroll arriba para que la lectura comience desde el título
       window.scrollTo(0, 0);
     }
   </script>
