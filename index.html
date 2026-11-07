@@ -222,6 +222,47 @@
       font-size: 28px;
       z-index: 999;
     }
+        /* Banner de versículos rotativos */
+    .banner-versiculo {
+      background-color: #f8f9fa;
+      border-left: 4px solid #2b2d5c;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+      font-size: 0.8rem;
+      font-style: italic;
+      color: #333;
+      text-align: center;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    /* Botón flotante de música (esquina inferior izquierda) */
+    .btn-musica-flotante {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #2b2d5c;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      z-index: 999;
+      transition: transform 0.1s ease;
+    }
+    .btn-musica-flotante:active {
+      transform: scale(0.92);
+    }
   </style>
 </head>
 <body>
@@ -240,8 +281,12 @@
         "YO Y MI CASA SERVIREMOS A JEHOVÁ" (JOSUÉ 24:15)
       </div>
 
+      <!-- AQUÍ PEGAS EL VERSÍCULO -->
+      <div class="banner-versiculo" id="caja-versiculo">
+        "El Señor es mi pastor; nada me faltará." (Salmos 23:1)
+      </div>
+      
       <div class="lista-casas">
-        
         <!-- CASA 1: VISIBLE -->
         <div class="card-casa color-1">
           <h3>🔥 CASA BETEL</h3>
@@ -412,7 +457,62 @@
 
       window.scrollTo(0, 0);
     }
+        // Control de música de fondo
+    const audio = document.getElementById('musica-fondo');
+    const btnMusica = document.getElementById('btn-musica');
+
+    function toggleMusica() {
+      if (audio.paused) {
+        audio.play();
+        btnMusica.textContent = '🔊';
+      } else {
+        audio.pause();
+        btnMusica.textContent = '🔇';
+      }
+    }
+
+    // Iniciar suavemente al primer toque del usuario en la pantalla
+    document.body.addEventListener('click', function iniciarAudio() {
+      if (audio.paused) {
+        audio.play().then(() => {
+          btnMusica.textContent = '🔊';
+        }).catch(() => {});
+      }
+    }, { once: true });
+
+    // Mensajes y versículos edificantes rotativos
+    const versiculos = [
+      '"El Señor es mi pastor; nada me faltará." (Salmos 23:1)',
+      '"Yo y mi casa serviremos a Jehová." (Josué 24:15)',
+      '"Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos." (Mateo 18:20)',
+      '"La paz os dejo, mi paz os doy." (Juan 14:27)',
+      '"Todo lo puedo en Cristo que me fortalece." (Filipenses 4:13)'
+    ];
+
+    let indiceVersiculo = 0;
+    const cajaVersiculo = document.getElementById('caja-versiculo');
+
+    setInterval(() => {
+      if (cajaVersiculo) {
+        cajaVersiculo.style.opacity = 0;
+        setTimeout(() => {
+          indiceVersiculo = (indiceVersiculo + 1) % versiculos.length;
+          cajaVersiculo.textContent = versiculos[indiceVersiculo];
+          cajaVersiculo.style.opacity = 1;
+        }, 500);
+      }
+    }, 7000); // Cambia cada 7 segundos
   </script>
+    <!-- Elemento de Audio (Música Instrumental Cristiana de fondo) -->
+  <audio id="musica-fondo" loop preload="auto">
+    <!-- Enlace de audio de prueba gratuito y libre de derechos -->
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=peaceful-piano-112349.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Botón flotante para pausar/activar la música -->
+  <button id="btn-musica" class="btn-musica-flotante" onclick="toggleMusica()" title="Música de fondo">
+    🎵
+  </button>
 
 </body>
 </html>
