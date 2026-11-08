@@ -438,13 +438,18 @@
 
   </div>
 
-  <!-- Botón flotante de WhatsApp (esquina inferior derecha) -->
-  <a href="https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2 target="_blank" class="btn-whatsapp-flotante" title="Grupo de WhatsApp">
-    💬
-  </a>
+    <!-- Elemento de Audio conectado a tu MP3 -->
+  <audio id="musica-fondo" loop preload="auto">
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
 
-  <!-- Script de navegación instantánea -->
+  <!-- Boton flotante de musica -->
+  <button id="btn-musica" class="btn-musica-flotante" onclick="toggleMusica()" title="Música de fondo">
+    🎵
+  </button>
+
   <script>
+    // Control de navegacion entre pantallas
     function irA(pantallaId) {
       document.querySelectorAll('.pantalla').forEach(p => {
         p.classList.remove('activa');
@@ -457,7 +462,8 @@
 
       window.scrollTo(0, 0);
     }
-        // Control de música de fondo
+
+    // Control de musica de fondo
     const audio = document.getElementById('musica-fondo');
     const btnMusica = document.getElementById('btn-musica');
 
@@ -471,7 +477,7 @@
       }
     }
 
-    // Iniciar suavemente al primer toque del usuario en la pantalla
+    // Iniciar al primer toque en la pantalla
     document.body.addEventListener('click', function iniciarAudio() {
       if (audio.paused) {
         audio.play().then(() => {
@@ -480,11 +486,11 @@
       }
     }, { once: true });
 
-    // Mensajes y versículos edificantes rotativos
+    // Versiculos rotativos
     const versiculos = [
       '"El Señor es mi pastor; nada me faltará." (Salmos 23:1)',
       '"Yo y mi casa serviremos a Jehová." (Josué 24:15)',
-      '"Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos." (Mateo 18:20)',
+      '"Donde están dos o tres congregados en mi nombre, allí estoy yo." (Mateo 18:20)',
       '"La paz os dejo, mi paz os doy." (Juan 14:27)',
       '"Todo lo puedo en Cristo que me fortalece." (Filipenses 4:13)'
     ];
@@ -501,18 +507,8 @@
           cajaVersiculo.style.opacity = 1;
         }, 500);
       }
-    }, 7000); // Cambia cada 7 segundos
+    }, 7000);
   </script>
-    <!-- Elemento de Audio (Música Instrumental Cristiana de fondo) -->
-  <audio id="musica-fondo" loop preload="auto">
-    <!-- Enlace de audio de prueba gratuito y libre de derechos -->
-    <source src="musica.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- Botón flotante para pausar/activar la música -->
-  <button id="btn-musica" class="btn-musica-flotante" onclick="toggleMusica()" title="Música de fondo">
-    🎵
-  </button>
 
 </body>
 </html>
