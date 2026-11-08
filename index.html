@@ -263,6 +263,65 @@
     .btn-musica-flotante:active {
       transform: scale(0.92);
     }
+        /* Botón para abrir el álbum de Google Fotos */
+    .btn-fotos-completas {
+      background-color: #ffffff;
+      color: #123456;
+      border: 1.5px solid #123456;
+      border-radius: 20px;
+      padding: 9px 18px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px auto;
+      text-align: center;
+    }
+
+    /* Caja de Alabanzas (YouTube y Spotify) */
+    .caja-musica-externa {
+      background-color: #f1f3f5;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      margin-top: 15px;
+      margin-bottom: 12px;
+    }
+
+    .caja-musica-externa p {
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .grupo-botones-musica {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .btn-musica-plataforma {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .btn-youtube {
+      background-color: #ff0000;
+    }
+
+    .btn-spotify {
+      background-color: #1db954;
+    }
   </style>
 </head>
 <body>
@@ -353,6 +412,21 @@
 
       </div>
 
+            <!-- SECCIÓN DE ALABANZAS COMPLETAS (YOUTUBE Y SPOTIFY) -->
+      <div class="caja-musica-externa">
+        <p>🎧 Escucha alabanzas cristianas completas:</p>
+        <div class="grupo-botones-musica">
+          <!-- Enlace a lista de YouTube -->
+          <a href="https://www.youtube.com/results?search_query=alabanzas+cristianas+adoracion" target="_blank" class="btn-musica-plataforma btn-youtube">
+            ▶ YouTube
+          </a>
+          <!-- Enlace a lista de Spotify -->
+          <a href="https://open.spotify.com/search/alabanzas%20cristianas" target="_blank" class="btn-musica-plataforma btn-spotify">
+            🟢 Spotify
+          </a>
+        </div>
+      </div>
+      
       <!-- Enlace al Grupo de WhatsApp General -->
       <a href="https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2 target="_blank" class="btn-contacto-whatsapp">
         ¿DUDAS? CONTÁCTANOS DIRECTAMENTE AQUÍ
@@ -373,7 +447,12 @@
           <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Oración Betel">
           <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Familia Betel">
         </div>
-
+        
+        <!-- Botón para ver más fotos de esta casa en Google Fotos -->
+        <a href="https://photos.app.goo.gl/ENLACE_DE_TU_ALBUM_BETEL" target="_blank" class="btn-fotos-completas">
+          📸 Ver todas las fotos de nuestras reuniones
+        </a>
+        
         <a href="https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2 target="_blank" class="btn-casa" style="margin-bottom:12px;">
           💬 Escribir al WhatsApp de esta Casa
         </a>
@@ -395,7 +474,12 @@
           <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Familia Siloé">
           <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Oración Siloé">
         </div>
-
+        
+        <!-- Botón para ver más fotos de esta casa en Google Fotos -->
+        <a href="https://photos.app.goo.gl/ENLACE_DE_TU_ALBUM_BETEL" target="_blank" class="btn-fotos-completas">
+          📸 Ver todas las fotos de nuestras reuniones
+        </a>
+        
         <a href="https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2 target="_blank" class="btn-casa" style="margin-bottom:12px;">
           💬 Escribir al WhatsApp de esta Casa
         </a>
@@ -417,7 +501,12 @@
           <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=500" alt="Familia Beraca">
           <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500" alt="Oración Beraca">
         </div>
-
+        
+        <!-- Botón para ver más fotos de esta casa en Google Fotos -->
+        <a href="https://photos.app.goo.gl/ENLACE_DE_TU_ALBUM_BETEL" target="_blank" class="btn-fotos-completas">
+          📸 Ver todas las fotos de nuestras reuniones
+        </a>
+        
         <a href="https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2 target="_blank" class="btn-casa" style="margin-bottom:12px;">
           💬 Escribir al WhatsApp de esta Casa
         </a>
