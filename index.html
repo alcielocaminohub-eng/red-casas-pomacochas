@@ -278,45 +278,57 @@
       text-align: center;
     }
 
-    /* Caja de Alabanzas (YouTube y Spotify) */
+        /* 1. Ocultamos el botón flotante de música para que no estorbe la vista */
+    .btn-musica-flotante {
+      display: none !important;
+    }
+
+    /* 2. Caja de Alabanzas corregida para celulares (botones separados y cómodos) */
     .caja-musica-externa {
-      background-color: #f1f3f5;
-      border-radius: 10px;
-      padding: 12px;
+      background-color: #f8f9fa;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px;
       text-align: center;
       margin-top: 15px;
       margin-bottom: 12px;
     }
 
     .caja-musica-externa p {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: bold;
-      color: #333;
-      margin-bottom: 8px;
+      color: #2b2d5c;
+      margin-bottom: 10px;
     }
 
+    /* En celulares los botones van uno sobre otro para que no se choquen */
     .grupo-botones-musica {
       display: flex;
-      gap: 10px;
-      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .btn-musica-plataforma {
-      flex: 1;
-      padding: 8px 10px;
-      border-radius: 20px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 25px;
       color: white;
       text-decoration: none;
-      font-size: 0.75rem;
+      font-size: 0.82rem;
       font-weight: bold;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .btn-musica-plataforma:active {
+      transform: scale(0.98);
     }
 
     .btn-youtube {
-      background-color: #ff0000;
+      background-color: #e62117;
     }
 
     .btn-spotify {
@@ -412,18 +424,27 @@
 
       </div>
 
-            <!-- SECCIÓN DE ALABANZAS COMPLETAS (YOUTUBE Y SPOTIFY) -->
+                  <!-- SECCIÓN DE ALABANZAS CON APAGADO AUTOMÁTICO DE FONDO -->
       <div class="caja-musica-externa">
         <p>🎧 Escucha alabanzas cristianas completas:</p>
         <div class="grupo-botones-musica">
-          <!-- Enlace a lista de YouTube -->
-          <a href="https://www.youtube.com/results?search_query=alabanzas+cristianas+adoracion" target="_blank" class="btn-musica-plataforma btn-youtube">
-            ▶ YouTube
+          
+          <!-- Botón YouTube: apaga la música web y abre YouTube -->
+          <a href="https://www.youtube.com/results?search_query=alabanzas+cristianas+adoracion" 
+             target="_blank" 
+             onclick="pausarMusicaFondo()" 
+             class="btn-musica-plataforma btn-youtube">
+            ▶ Escuchar en YouTube
           </a>
-          <!-- Enlace a lista de Spotify -->
-          <a href="https://open.spotify.com/search/alabanzas%20cristianas" target="_blank" class="btn-musica-plataforma btn-spotify">
-            🟢 Spotify
+
+          <!-- Botón Spotify: apaga la música web y abre Spotify -->
+          <a href="https://open.spotify.com/search/alabanzas%20cristianas" 
+             target="_blank" 
+             onclick="pausarMusicaFondo()" 
+             class="btn-musica-plataforma btn-spotify">
+            🟢 Escuchar en Spotify
           </a>
+
         </div>
       </div>
       
@@ -597,6 +618,14 @@
         }, 500);
       }
     }, 7000);
+
+        // Función que apaga la música de fondo al ir a YouTube o Spotify
+    function pausarMusicaFondo() {
+      const audio = document.getElementById('musica-fondo');
+      if (audio) {
+        audio.pause();
+      }
+    }
   </script>
 
 </body>
