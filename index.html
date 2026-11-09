@@ -334,6 +334,39 @@
     .btn-spotify {
       background-color: #1db954;
     }
+        /* Estilos para la sección de Donaciones y Ayuda Social */
+    .tarjeta-ayuda {
+      background-color: #f8f9fa;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .item-pago {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffff;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px dashed #cbd5e1;
+    }
+
+    .btn-copiar {
+      background-color: #2b2d5c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-copiar:active {
+      transform: scale(0.95);
+      background-color: #27ae60;
+    }
   </style>
 </head>
 <body>
@@ -447,6 +480,13 @@
 
         </div>
       </div>
+
+            <!-- BOTÓN PARA ENTRAR A AYUDA SOCIAL Y OFRENDAS -->
+      <div style="margin-bottom: 16px;">
+        <button class="btn-casa" style="width: 100%; padding: 12px; background-color: #f39c12; color: white; font-size: 0.9rem;" onclick="irA('pantalla-colaborar')">
+          💛 Ayuda Social y Ofrendas
+        </button>
+      </div>
       
       <!-- Enlace al Grupo de WhatsApp General -->
       <a href="https://chat.whatsapp.com/Ko5CM5yUEhb7K5Dnu95Q60?s=cl&p=a&mlu=4&ilr=4&iam=2 target="_blank" class="btn-contacto-whatsapp">
@@ -535,7 +575,59 @@
         <button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button>
       </div>
     </div>
+         <!-- ================= PANTALLA: AYUDA SOCIAL Y OFRENDAS ================= -->
+    <div id="pantalla-colaborar" class="pantalla">
+      <div class="detalle-casa" style="background: #ffffff; text-align: left;">
+        
+        <h2 style="text-align: center; color: #2b2d5c; margin-bottom: 6px;">Apoyo y Solidaridad</h2>
+        <p class="texto-lema" style="text-align: center; font-style: italic; margin-bottom: 18px;">
+          "Cada uno dé como propuso en su corazón: no con tristeza, ni por necesidad, porque Dios ama al dador alegre." (2 Corintios 9:7)
+        </p>
 
+        <!-- BLOQUE 1: AYUDA SOCIAL (VÍVERES / CASO SOCIAL) -->
+        <div class="tarjeta-ayuda">
+          <h3 style="color: #c0392b; font-size: 0.95rem; margin-bottom: 6px;">🥫 Ayuda Social (Canasta de Amor)</h3>
+          <p style="font-size: 0.8rem; color: #555; margin-bottom: 10px; line-height: 1.4;">
+            Si deseas colaborar con alimentos no perecibles, ropa o apoyo para familias en necesidad de nuestras casas celulares:
+          </p>
+          <a href="https://chat.whatsapp.com/TU_CODIGO_DE_GRUPO" target="_blank" class="btn-casa" style="background-color: #27ae60; color: white; width: 100%; justify-content: center;">
+            💬 Coordinar entrega de Ayuda Social
+          </a>
+        </div>
+
+        <!-- BLOQUE 2: APORTE ECONÓMICO (YAPE / PLIN / BANCO) -->
+        <div class="tarjeta-ayuda" style="margin-top: 14px;">
+          <h3 style="color: #2b2d5c; font-size: 0.95rem; margin-bottom: 8px;">💳 Ofrendas y Aportes Digitales</h3>
+          
+          <!-- YAPE / PLIN -->
+          <div class="item-pago">
+            <div>
+              <strong>Yape / Plin:</strong><br>
+              <span id="num-yape" style="font-size: 0.85rem; color: #333;">999 999 999</span><br>
+              <small style="color: #777;">A nombre de: [Nombre o Iglesia]</small>
+            </div>
+            <button class="btn-copiar" onclick="copiarTexto('num-yape')">Copiar</button>
+          </div>
+
+          <!-- CUENTA BANCARIA -->
+          <div class="item-pago" style="margin-top: 8px;">
+            <div>
+              <strong>Banco BCP / Nación:</strong><br>
+              <span id="num-banco" style="font-size: 0.85rem; color: #333;">000-000000000-0-00</span><br>
+              <small style="color: #777;">CCI: 002-000000000000000-00</small>
+            </div>
+            <button class="btn-copiar" onclick="copiarTexto('num-banco')">Copiar</button>
+          </div>
+
+          <!-- Enviar constancia -->
+          <a href="https://chat.whatsapp.com/TU_CODIGO_DE_GRUPO" target="_blank" style="display: block; text-align: center; margin-top: 12px; font-size: 0.78rem; color: #2b2d5c; font-weight: bold; text-decoration: underline;">
+            📲 Enviar constancia o reporte por WhatsApp
+          </a>
+        </div>
+
+        <button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button>
+      </div>
+    </div>
 
     <!-- ================= PANTALLAS PREPARADAS PARA CASAS 4 A 10 ================= -->
     <div id="casa-4" class="pantalla"><div class="detalle-casa"><h2>Bienvenido a mi hogar<br>Casa 4: Ebenezer</h2><p class="texto-lema">Hasta aquí nos ayudó Jehová.</p><a href="https://chat.whatsapp.com/TU_CODIGO_DE_GRUPO" target="_blank" class="btn-casa" style="margin-bottom:12px;">💬 Escribir al WhatsApp de esta Casa</a><button class="btn-volver" onclick="irA('pantalla-inicio')">Volver al Menú</button></div></div>
@@ -625,6 +717,16 @@
       if (audio) {
         audio.pause();
       }
+    }
+
+        // Función para copiar números de cuenta o teléfono con un toque
+    function copiarTexto(idElemento) {
+      const texto = document.getElementById(idElemento).innerText;
+      navigator.clipboard.writeText(texto).then(() => {
+        alert("¡Número copiado con éxito!: " + texto);
+      }).catch(() => {
+        alert("Copia este número: " + texto);
+      });
     }
   </script>
 
